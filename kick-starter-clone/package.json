@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha",
     "deploy-contract": "source ./.local-env.sh && node ethereum/deploy.js",
-    "dev": "next dev"
+    "dev": "source ./.local-env.sh && next dev"
   },
   "dependencies": {
     "fs-extra": "^5.0.0",
