@@ -2,6 +2,7 @@ import factory from '../ethereum/factory';
 import React, {PropTypes} from 'react';
 import { Card, Button } from 'semantic-ui-react';
 import Layout from '../components/Layout';
+import { Link } from '../routes';
 
 export default class CampaignIndex extends React.Component {
   static async getInitialProps() {
@@ -15,7 +16,11 @@ export default class CampaignIndex extends React.Component {
     const items = this.props.campaigns.map(address => {
       return {
         header: address,
-        description: <a>View Campaign</a>,
+        description: (
+          <Link route={`/campaigns/${address}`}>
+            <a>View Campaign</a>
+          </Link>
+        ),
         fluid: true
       }
     });
@@ -27,12 +32,17 @@ export default class CampaignIndex extends React.Component {
       <Layout>
         <div>
           <h3>Open Campaign</h3>
-          <Button
-            content="Create Campaign"
-            icon="add circle"
-            primary
-            floated="right"
-          />
+          <Link route="/campaigns/new">
+            <a>
+              <Button
+                content="Create Campaign"
+                icon="add circle"
+                primary
+                floated="right"
+              />
+            </a>
+          </Link>
+
           { this.renderCampaigns() }
         </div>
       </Layout>

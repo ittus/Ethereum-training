@@ -3,6 +3,7 @@ import { Form, Button, Input, Message } from 'semantic-ui-react';
 import Layout from '../../components/Layout';
 import factory from '../../ethereum/factory';
 import web3 from '../../ethereum/web3';
+import { Router } from '../../routes';
 
 export default class CampaignNew extends React.Component {
   state = {
@@ -15,7 +16,7 @@ export default class CampaignNew extends React.Component {
     event.preventDefault();
     this.setState({
       loading: true,
-      errMessage: '' 
+      errMessage: ''
     });
     try {
       const accounts = await web3.eth.getAccounts();
@@ -23,6 +24,7 @@ export default class CampaignNew extends React.Component {
         .send({
           from: accounts[0]
         })
+      Router.pushRoute('/');
     } catch (err) {
       this.setState({ errMessage: err.message })
     } finally {
